@@ -8,205 +8,301 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mahdi Moussa — Senior Full-Stack Software Engineer">
 <meta property="og:description" content="Laravel and React engineer leading the FLM project at Wakilni. Logistics, e-commerce and fintech.">
-<meta property="og:image" content="assets/mahdi-moussa.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a2c82'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='white' text-anchor='middle'%3EMM%3C/text%3E%3C/svg%3E">
+<meta property="og:image" content="https://mahdimoussa.github.io/assets/mahdi-moussa.jpg">
+<meta name="theme-color" content="#0b0a10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0a10'/%3E%3Ctext x='10' y='42' font-family='monospace' font-weight='700' font-size='28' fill='%2339d98a'%3E%3E_%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f8f7fb;
-    --surface: #ffffff;
-    --ink: #17161d;
-    --body: #3d3b48;
-    --muted: #706d7d;
-    --accent: #4a2c82;
-    --accent-2: #7a55c7;
-    --accent-soft: #eee8f8;
-    --line: #e4e0ee;
-    --shadow: 0 1px 2px rgba(23,22,29,.04), 0 8px 24px rgba(74,44,130,.06);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121118;
-      --surface: #1b1a23;
-      --ink: #f2f0f8;
-      --body: #c9c6d6;
-      --muted: #9591a6;
-      --accent: #b89cf0;
-      --accent-2: #9b7be0;
-      --accent-soft: #2a2438;
-      --line: #2d2b38;
-      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
-    }
+    --bg: #0b0a10;
+    --bg-2: #111019;
+    --panel: #15141f;
+    --panel-2: #1b1a27;
+    --line: #262436;
+    --ink: #f1eff8;
+    --body: #c4c1d4;
+    --muted: #7f7b94;
+    --green: #39d98a;
+    --purple: #a98bf5;
+    --amber: #f5c26b;
+    --blue: #6fb7ff;
+    --pink: #f47fb4;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --sans: "Inter", "Segoe UI", system-ui, sans-serif;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
   body {
     margin: 0; background: var(--bg); color: var(--body);
-    font-family: "Inter", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+    font-family: var(--sans); font-size: 16px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
-  a { color: var(--accent); text-decoration: none; }
+  ::selection { background: var(--green); color: var(--bg); }
+  a { color: var(--green); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: var(--mono); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Background: grid + glow + cursor spotlight */
+  .bg {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(600px circle at var(--mx, 70%) var(--my, 20%), rgba(169,139,245,.10), transparent 60%),
+      radial-gradient(900px circle at 10% 0%, rgba(57,217,138,.07), transparent 55%),
+      linear-gradient(var(--bg), var(--bg));
+  }
+  .bg::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+  }
 
   /* Nav */
   nav.top {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(11,10,16,.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
   }
-  nav.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
-  .brand { font-weight: 800; color: var(--ink); letter-spacing: .02em; }
-  .brand span { color: var(--accent); }
-  .links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
-  .links a { color: var(--muted); }
-  .links a:hover, .links a.active { color: var(--accent); text-decoration: none; }
+  nav.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 16px; }
+  .prompt { font-family: var(--mono); font-size: 14px; color: var(--muted); white-space: nowrap; }
+  .prompt b { color: var(--green); font-weight: 500; }
+  .prompt i { color: var(--purple); font-style: normal; }
+  .links { display: flex; gap: 4px; font-family: var(--mono); font-size: 13px; }
+  .links a { color: var(--muted); padding: 6px 10px; border-radius: 6px; }
+  .links a::before { content: "./"; color: var(--line); transition: color .2s; }
+  .links a:hover, .links a.active { color: var(--ink); background: var(--panel); text-decoration: none; }
+  .links a:hover::before, .links a.active::before { color: var(--green); }
+
+  /* Terminal window chrome */
+  .term {
+    background: linear-gradient(180deg, var(--panel), var(--bg-2));
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.02) inset;
+  }
+  .term-bar { display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.02); }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
+  .term-title { margin-left: 10px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .term-body { padding: 22px 24px; font-family: var(--mono); font-size: 14.5px; line-height: 1.75; }
+  .ps1 { color: var(--green); }
+  .ps1 + .cmd { color: var(--ink); }
+  .out { color: var(--body); }
+  .caret { display: inline-block; width: 9px; height: 1.15em; background: var(--green); vertical-align: -3px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
 
   /* Hero */
-  .hero { padding: 64px 0 48px; }
-  .hero .wrap { display: grid; grid-template-columns: 220px 1fr; gap: 44px; align-items: center; }
-  .photo {
-    width: 220px; height: 220px; border-radius: 28px; object-fit: cover;
-    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), var(--shadow);
-  }
-  .eyebrow { display: inline-block; padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; }
-  h1 { margin: 14px 0 4px; font-size: clamp(36px, 6vw, 54px); line-height: 1.05; color: var(--ink); font-weight: 800; letter-spacing: -0.02em; }
-  .title { font-size: 20px; color: var(--ink); font-weight: 500; margin: 0 0 14px; }
-  .lead { max-width: 620px; margin: 0 0 22px; }
-  .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--muted); margin-bottom: 24px; }
-  .meta span { display: inline-flex; align-items: center; gap: 6px; }
-  .meta svg { width: 16px; height: 16px; stroke: var(--accent); }
-  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero { padding: 64px 0 40px; }
+  .hero-grid { display: grid; grid-template-columns: 1.35fr .9fr; gap: 28px; align-items: stretch; }
+  .boot-line { min-height: 1.75em; }
+  .name-out { font-family: var(--sans); font-weight: 800; color: var(--ink); font-size: clamp(34px, 5.4vw, 56px); line-height: 1.05; letter-spacing: -0.02em; margin: 4px 0 6px; }
+  .name-out .grad { background: linear-gradient(90deg, var(--green), var(--purple)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .role-out { font-family: var(--sans); font-size: 19px; color: var(--ink); font-weight: 500; }
+  .role-out .at { color: var(--purple); }
+  .stack-out span { color: var(--amber); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; font-family: var(--sans); }
   .btn {
-    display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 10px;
-    font-weight: 600; font-size: 15px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-    transition: transform .15s ease, border-color .15s ease;
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 9px;
+    font-family: var(--mono); font-weight: 500; font-size: 13.5px; color: var(--ink);
+    border: 1px solid var(--line); background: var(--panel-2);
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
-  .btn:hover { text-decoration: none; transform: translateY(-1px); border-color: var(--accent); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  @media (prefers-color-scheme: dark) { .btn.primary { color: #17161d; } }
-  .btn svg { width: 17px; height: 17px; }
+  .btn:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--green); box-shadow: 0 8px 24px -10px rgba(57,217,138,.5); }
+  .btn.primary { background: var(--green); color: #06120c; border-color: var(--green); font-weight: 700; }
+  .btn svg { width: 16px; height: 16px; }
+
+  .photo-win .term-body { padding: 0; position: relative; }
+  .photo-wrap { position: relative; aspect-ratio: 1 / 1; overflow: hidden; }
+  .photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.02); }
+  .photo-wrap::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.10) 0 1px, transparent 1px 3px);
+    mix-blend-mode: multiply; opacity: .5;
+  }
+  .scan { display: none; }
+  .js .scan { display: block; position: absolute; inset: 0; background: var(--bg-2); transform-origin: bottom; transition: transform 1.1s cubic-bezier(.7,0,.2,1); }
+  .scan::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--green); box-shadow: 0 0 18px 4px rgba(57,217,138,.6); }
+  .loaded .scan { transform: scaleY(0); }
+  .photo-meta { display: flex; justify-content: space-between; padding: 10px 14px; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
+  .photo-meta .ok { color: var(--green); }
+
+  .skip { position: absolute; right: 14px; top: 9px; font-family: var(--mono); font-size: 11.5px; color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+  .skip:hover { color: var(--ink); border-color: var(--muted); }
+  .hero .term { position: relative; }
 
   /* Sections */
-  section { padding: 44px 0; }
-  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px; }
-  h2 { margin: 0; font-size: 26px; color: var(--ink); letter-spacing: -0.01em; }
-  .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); }
+  section { padding: 56px 0; }
+  .sec-cmd { font-family: var(--mono); font-size: 15px; margin: 0 0 22px; color: var(--ink); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .sec-cmd .ps1 { color: var(--green); }
+  .sec-cmd .typed { color: var(--ink); }
+  .sec-cmd .caret { opacity: 0; }
+  .sec-cmd.typing .caret { opacity: 1; }
+  h2 { margin: 0 0 6px; font-size: clamp(26px, 3.6vw, 34px); color: var(--ink); letter-spacing: -0.02em; font-weight: 800; }
+  .sec-sub { margin: 0 0 26px; color: var(--muted); }
 
-  /* Stats */
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; }
-  .stat { text-align: left; padding: 18px 20px; }
-  .stat b { display: block; font-size: 26px; color: var(--accent); line-height: 1.2; }
+  /* Reveal */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 22px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .about-text p { margin: 0; font-size: 16.5px; color: var(--body); }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat { padding: 18px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); position: relative; overflow: hidden; }
+  .stat b { display: block; font-family: var(--mono); font-size: 26px; color: var(--green); font-weight: 700; line-height: 1.2; }
   .stat span { font-size: 13px; color: var(--muted); }
+  .stat::after { content: ""; position: absolute; right: -30px; top: -30px; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(rgba(169,139,245,.18), transparent 70%); }
 
-  /* Timeline */
-  .timeline { position: relative; margin-left: 8px; padding-left: 28px; border-left: 2px solid var(--line); }
-  .job { position: relative; margin-bottom: 22px; }
-  .job::before {
-    content: ""; position: absolute; left: -36px; top: 26px; width: 14px; height: 14px; border-radius: 50%;
-    background: var(--surface); border: 3px solid var(--accent);
+  /* Git log experience */
+  .gitlog { position: relative; padding-left: 34px; }
+  .gitlog::before { content: ""; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--green), var(--purple) 60%, var(--line)); }
+  .commit { position: relative; margin-bottom: 20px; }
+  .commit::before {
+    content: ""; position: absolute; left: -29px; top: 22px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--bg); border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--bg);
   }
-  .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
-  h3 { margin: 0; font-size: 18px; color: var(--ink); }
-  .badge { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 11.5px; font-weight: 700; letter-spacing: .04em; vertical-align: 2px; }
-  .when { font-size: 14px; color: var(--muted); font-weight: 500; white-space: nowrap; }
-  .org { color: var(--accent); font-weight: 600; font-size: 15px; }
-  .org small { color: var(--muted); font-weight: 400; font-size: 14px; }
-  h4 { margin: 18px 0 6px; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
-  ul { margin: 8px 0 0; padding-left: 20px; }
-  li { margin-bottom: 5px; }
-  li::marker { color: var(--accent-2); }
-  .job p { margin: 10px 0 0; }
+  .commit.old::before { border-color: var(--purple); }
+  .commit-meta { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: 6px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
+  .hash { color: var(--amber); }
+  .ref { color: var(--blue); }
+  .ref b { color: var(--green); font-weight: 500; }
+  .commit h3 { margin: 0; font-size: 19px; color: var(--ink); }
+  .commit .org { font-size: 15px; color: var(--purple); font-weight: 600; }
+  .commit .org small { color: var(--muted); font-weight: 400; }
+  .tag-lead { display: inline-block; margin-left: 8px; padding: 1px 8px; font-family: var(--mono); font-size: 11px; color: var(--bg); background: var(--green); border-radius: 5px; vertical-align: 3px; font-weight: 700; }
+  .tag-pt { background: var(--purple); }
+  h4 { margin: 16px 0 6px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; color: var(--green); }
+  h4::before { content: "## "; color: var(--muted); }
+  .commit ul { margin: 6px 0 0; padding-left: 0; list-style: none; }
+  .commit li { position: relative; padding-left: 20px; margin-bottom: 5px; }
+  .commit li::before { content: "+"; position: absolute; left: 2px; font-family: var(--mono); color: var(--green); font-weight: 700; }
+  .commit p { margin: 10px 0 0; }
 
-  /* Projects */
-  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .project h3 { font-size: 17px; margin-bottom: 4px; }
-  .project .where { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
-  .project p { margin: 0 0 14px; font-size: 15px; }
+  /* Projects as files */
+  .files { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .file { position: relative; padding: 0; overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
+  .file:hover { transform: translateY(-4px); border-color: rgba(57,217,138,.5); }
+  .file::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(400px circle at var(--fx, 50%) var(--fy, 0%), rgba(57,217,138,.10), transparent 60%);
+  }
+  .file:hover::before { opacity: 1; }
+  .file-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .file-head .fname { color: var(--ink); }
+  .file-head .fname::before { content: "▸ "; color: var(--green); }
+  .file-body { padding: 18px; }
+  .file h3 { margin: 0 0 8px; font-size: 18px; color: var(--ink); }
+  .file p { margin: 0 0 14px; font-size: 15px; }
+  .file.wide { grid-column: span 2; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12.5px; font-weight: 500; }
-  .project.featured { grid-column: span 2; border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .tag { font-family: var(--mono); font-size: 12px; padding: 3px 9px; border-radius: 6px; color: var(--purple); background: rgba(169,139,245,.10); border: 1px solid rgba(169,139,245,.18); }
 
-  /* Skills */
-  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-  .skill h3 { font-size: 15px; margin-bottom: 12px; }
+  /* Skills JSON */
+  .json { font-family: var(--mono); font-size: 14.5px; line-height: 1.9; white-space: pre-wrap; word-break: break-word; }
+  .k { color: var(--blue); } .s { color: var(--green); } .p { color: var(--muted); } .c { color: var(--muted); font-style: italic; }
 
-  /* Education */
-  .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .mini { padding: 14px 0; border-bottom: 1px solid var(--line); }
-  .mini:last-child { border-bottom: 0; padding-bottom: 0; }
-  .mini:first-of-type { padding-top: 0; }
-  .mini b { color: var(--ink); }
-  .mini .when { float: right; margin-left: 12px; font-size: 13px; }
-  .mini div { font-size: 14px; color: var(--muted); }
+  /* Education yml */
+  .yml { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .yml .card { font-family: var(--mono); font-size: 14px; line-height: 1.85; }
+  .yml .key { color: var(--blue); }
+  .yml .val { color: var(--body); }
+  .yml .yr { color: var(--amber); }
+  .yml .item { margin-bottom: 12px; }
+  .yml .item:last-child { margin-bottom: 0; }
+  .yml .dash { color: var(--green); }
 
-  /* Contact */
-  .contact { text-align: center; padding: 40px 24px; }
-  .contact h2 { margin-bottom: 8px; }
-  .contact p { margin: 0 auto 22px; max-width: 520px; }
-  .contact .cta { justify-content: center; }
-  footer { padding: 28px 0 40px; text-align: center; font-size: 13px; color: var(--muted); }
+  /* Interactive terminal */
+  .shell .term-body { min-height: 260px; max-height: 380px; overflow-y: auto; cursor: text; }
+  .shell-line { white-space: pre-wrap; word-break: break-word; }
+  .shell-input-row { display: flex; gap: 8px; align-items: center; }
+  .shell-input { flex: 1; background: transparent; border: 0; outline: 0; color: var(--ink); font: inherit; caret-color: var(--green); padding: 0; min-width: 0; }
+  .hint { color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .chip { font-family: var(--mono); font-size: 12.5px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--body); cursor: pointer; transition: border-color .2s, color .2s; }
+  .chip:hover { border-color: var(--green); color: var(--green); }
 
-  @media (max-width: 760px) {
+  footer { padding: 30px 0 48px; text-align: center; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  footer b { color: var(--green); font-weight: 500; }
+
+  @media (max-width: 860px) {
     .links { display: none; }
-    .hero { padding: 36px 0 24px; }
-    .hero .wrap { grid-template-columns: 1fr; gap: 24px; text-align: left; }
-    .photo { width: 140px; height: 140px; border-radius: 22px; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .projects, .edu { grid-template-columns: 1fr; }
-    .project.featured { grid-column: auto; }
-    .card { padding: 20px; }
-    .timeline { padding-left: 20px; }
-    .job::before { left: -28px; }
-    section { padding: 32px 0; }
+    .hero { padding: 32px 0 20px; }
+    .hero-grid, .about-grid, .yml { grid-template-columns: 1fr; }
+    .photo-win { max-width: 300px; order: -1; }
+    .files { grid-template-columns: 1fr; }
+    .file.wide { grid-column: auto; }
+    .term-body { padding: 18px; font-size: 13.5px; }
+    section { padding: 40px 0; }
+    .gitlog { padding-left: 26px; }
+    .gitlog::before { left: 7px; }
+    .commit::before { left: -25px; }
   }
-  @media print {
-    nav.top, .cta { display: none; }
-    body { background: #fff; }
-    .card { box-shadow: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; transform: none; }
+    .js .scan { display: none; }
   }
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"></div>
 
 <nav class="top">
   <div class="wrap">
-    <a class="brand" href="#top">Mahdi <span>Moussa</span></a>
+    <a class="prompt" href="#top"><b>mahdi</b>@<i>beirut</i>:~$</a>
     <div class="links">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#education">education</a>
+      <a href="#contact">contact</a>
     </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="wrap">
-    <img class="photo" src="assets/mahdi-moussa.jpg" alt="Portrait of Mahdi Moussa" width="220" height="220">
-    <div>
-      <span class="eyebrow">FLM Project Lead at Wakilni</span>
-      <h1>Mahdi Moussa</h1>
-      <p class="title">Senior Full-Stack Software Engineer</p>
-      <p class="lead">I build Laravel and React products for logistics, e-commerce and fintech, and own features end to end, from design and data modelling to releases and production support.</p>
-      <div class="meta">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-6.5-8-13a8 8 0 0 1 16 0c0 6.5-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>Beirut, Lebanon</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:mahdi.m.moussa@gmail.com">mahdi.m.moussa@gmail.com</a></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+96176787354">+961 76 78 73 54</a></span>
+  <div class="wrap hero-grid">
+    <div class="term" aria-label="Introduction">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">mahdi@beirut: ~ — zsh</span></div>
+      <button class="skip" id="skip" type="button">skip ⏭</button>
+      <div class="term-body" id="boot">
+        <div class="boot-line"><span class="ps1">~ $</span> <span class="cmd" data-type="whoami">whoami</span></div>
+        <div class="boot-out name-out" data-step><span class="grad">Mahdi Moussa</span></div>
+        <div class="boot-line"><span class="ps1">~ $</span> <span class="cmd" data-type="cat role.txt">cat role.txt</span></div>
+        <div class="boot-out role-out" data-step>Senior Full-Stack Software Engineer <span class="at">· FLM Project Lead @ Wakilni</span></div>
+        <div class="boot-line"><span class="ps1">~ $</span> <span class="cmd" data-type="echo $STACK">echo $STACK</span></div>
+        <div class="boot-out out stack-out" data-step><span>Laravel</span> · <span>React</span> · <span>MySQL</span> · <span>AWS</span> · <span>Claude Code</span></div>
+        <div class="boot-line"><span class="ps1">~ $</span> <span class="cmd" data-type="ls ./links">ls ./links</span></div>
+        <div class="boot-out" data-step>
+          <div class="hero-cta">
+            <a class="btn primary" href="assets/Mahdi_Moussa_Resume.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>resume.pdf</a>
+            <a class="btn" href="https://linkedin.com/in/mahdi-moussa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg>linkedin</a>
+            <a class="btn" href="mailto:mahdi.m.moussa@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>email</a>
+          </div>
+        </div>
+        <div class="boot-line" data-step><span class="ps1">~ $</span> <span class="caret"></span></div>
       </div>
-      <div class="cta">
-        <a class="btn primary" href="assets/Mahdi_Moussa_Resume.pdf" download>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>Download CV</a>
-        <a class="btn" href="https://linkedin.com/in/mahdi-moussa" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg>LinkedIn</a>
-        <a class="btn" href="mailto:mahdi.m.moussa@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email me</a>
+    </div>
+
+    <div class="term photo-win" id="photoWin">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">preview — mahdi.jpg</span></div>
+      <div class="term-body">
+        <div class="photo-wrap">
+          <img src="assets/mahdi-moussa.jpg" alt="Portrait of Mahdi Moussa" width="400" height="400">
+          <div class="scan" aria-hidden="true"></div>
+        </div>
+        <div class="photo-meta"><span>📍 Beirut, Lebanon</span><span class="ok">● online</span></div>
       </div>
     </div>
   </div>
@@ -215,91 +311,93 @@
 <main>
   <section id="about">
     <div class="wrap">
-      <div class="sec-head"><h2>About</h2><span class="rule"></span></div>
-      <div class="card">
-        <p style="margin:0">Senior full-stack engineer with 5+ years building Laravel and React products for logistics, e-commerce and fintech. I lead the FLM project at Wakilni and own large features end to end, from design and data modelling to releases and production support. I work well with product, operations and other engineers, and I care about clean code, solid reviews and dependable deployments. I use AI-assisted development every day: Claude Code to plan, build, test and review code, and Claude artifacts to share reports and specs with my team. I review every change myself.</p>
-      </div>
-      <div class="stats">
-        <div class="card stat"><b>5+</b><span>years in software engineering</span></div>
-        <div class="card stat"><b>Lead</b><span>FLM project at Wakilni</span></div>
-        <div class="card stat"><b>Laravel</b><span>+ React, end to end</span></div>
-        <div class="card stat"><b>AI-first</b><span>Claude Code daily</span></div>
+      <div class="sec-cmd" data-cmd="cat about.md"><span class="ps1">~ $</span><span class="typed">cat about.md</span><span class="caret"></span></div>
+      <div class="about-grid">
+        <div class="card about-text reveal">
+          <p>Senior full-stack engineer with <strong>5+ years</strong> building <strong>Laravel and React</strong> products for logistics, e-commerce and fintech. I <strong>lead the FLM project at Wakilni</strong> and own large features end to end, from design and data modelling to releases and production support. I work well with product, operations and other engineers, and I care about clean code, solid reviews and dependable deployments. I use <strong>AI-assisted development</strong> every day: Claude Code to plan, build, test and review code, and Claude artifacts to share reports and specs with my team. I review every change myself.</p>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><b data-count="5" data-suffix="+">5+</b><span>years shipping software</span></div>
+          <div class="stat"><b>lead</b><span>FLM project at Wakilni</span></div>
+          <div class="stat"><b>full</b><span>stack: Laravel + React</span></div>
+          <div class="stat"><b>ai</b><span>Claude Code, every day</span></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="experience">
     <div class="wrap">
-      <div class="sec-head"><h2>Experience</h2><span class="rule"></span></div>
-      <div class="timeline">
+      <div class="sec-cmd" data-cmd="git log --author=&quot;Mahdi&quot; --graph"><span class="ps1">~ $</span><span class="typed">git log --author="Mahdi" --graph</span><span class="caret"></span></div>
+      <div class="gitlog">
 
-        <article class="job card">
-          <div class="job-head">
-            <h3>Senior Full-Stack Developer <span class="badge">FLM PROJECT LEAD</span></h3>
-            <span class="when">Nov 2023 – Present</span>
+        <article class="commit reveal">
+          <div class="commit-meta"><span class="hash">commit 7d4e5f6</span><span class="ref">(<b>HEAD -&gt; main</b>)</span><span>· Nov 2023 – Present</span></div>
+          <div class="card">
+            <h3>Senior Full-Stack Developer <span class="tag-lead">FLM LEAD</span></h3>
+            <div class="org">Wakilni SAL <small>· Dekwaneh, Metn, Lebanon · Full Time · Hybrid</small></div>
+            <p>Senior engineer on Wakilni's delivery and logistics platform (Laravel API, React web app, driver mobile app).</p>
+            <h4>leadership &amp; responsibilities</h4>
+            <ul>
+              <li>Lead the FLM project: own the technical direction, split work into tickets, estimate and plan sprints, and answer for delivery to stakeholders</li>
+              <li>Design features before building them: database schema, API contracts, queues and background jobs, feature flags and rollout plans</li>
+              <li>Review code for the team and mentor developers on Laravel and React best practices and design patterns such as Repository</li>
+              <li>Manage production releases and deployments across Development, UAT and Production, including servers, databases and access</li>
+              <li>Provide on-call support for operations, finance and customer teams; investigate production issues with Datadog logs</li>
+              <li>Run weekly demos and training sessions for teams and departments on new features</li>
+              <li>Work in Agile: sprint planning, daily scrums, retrospectives and post-mortems with product and cross-functional teams</li>
+            </ul>
+            <h4>ai-assisted engineering with claude</h4>
+            <ul>
+              <li>Use Claude Code every day in the terminal and VS Code to plan features, write and refactor code, write unit tests and review changes before pull requests</li>
+              <li>Maintain persistent Claude project memory so the agent follows team conventions from one session to the next</li>
+              <li>Use Claude Code for load testing, capacity planning and production troubleshooting</li>
+              <li>Publish Claude artifacts such as reports, plans and API contracts to share with developers and management</li>
+            </ul>
           </div>
-          <div class="org">Wakilni SAL <small>· Dekwaneh, Metn, Lebanon · Full Time · Hybrid</small></div>
-          <p>Senior engineer on Wakilni's delivery and logistics platform (Laravel API, React web app, driver mobile app).</p>
-          <h4>Leadership and responsibilities</h4>
-          <ul>
-            <li>Lead the FLM project: own the technical direction, split work into tickets, estimate and plan sprints, and answer for delivery to stakeholders</li>
-            <li>Design features before building them: database schema, API contracts, queues and background jobs, feature flags and rollout plans</li>
-            <li>Review code for the team and mentor developers on Laravel and React best practices and design patterns such as Repository</li>
-            <li>Manage production releases and deployments across Development, UAT and Production, including servers, databases and access</li>
-            <li>Provide on-call support for operations, finance and customer teams; investigate production issues with Datadog logs</li>
-            <li>Run weekly demos and training sessions for teams and departments on new features</li>
-            <li>Work in Agile: sprint planning, daily scrums, retrospectives and post-mortems with product and cross-functional teams</li>
-          </ul>
-          <h4>AI-assisted engineering with Claude</h4>
-          <ul>
-            <li>Use Claude Code every day in the terminal and VS Code to plan features, write and refactor code, write unit tests and review changes before pull requests</li>
-            <li>Maintain persistent Claude project memory so the agent follows team conventions from one session to the next</li>
-            <li>Use Claude Code for load testing, capacity planning and production troubleshooting</li>
-            <li>Publish Claude artifacts such as reports, plans and API contracts to share with developers and management</li>
-          </ul>
         </article>
 
-        <article class="job card">
-          <div class="job-head">
-            <h3>Full-Stack Developer <span class="badge">PART TIME</span></h3>
-            <span class="when">Jan 2025 – Jul 2025</span>
+        <article class="commit reveal">
+          <div class="commit-meta"><span class="hash">commit c2a91b0</span><span class="ref">(side-project)</span><span>· Jan 2025 – Jul 2025</span></div>
+          <div class="card">
+            <h3>Full-Stack Developer <span class="tag-lead tag-pt">PART TIME</span></h3>
+            <div class="org">ITWORKS ME SAL <small>· Sin El-Fil, Metn, Lebanon · Remote</small></div>
+            <ul>
+              <li>Built the UI from scratch for an expense tracker, using Figma for design documentation</li>
+              <li>Fixed bugs on the frontend and backend</li>
+              <li>Implemented Google and Facebook sign-in using Firebase, the Google dashboard and the Facebook developers dashboard</li>
+              <li>Delivered the project on schedule in 6 months</li>
+            </ul>
           </div>
-          <div class="org">ITWORKS ME SAL <small>· Sin El-Fil, Metn, Lebanon · Remote</small></div>
-          <ul>
-            <li>Built the UI from scratch for an expense tracker, using Figma for design documentation</li>
-            <li>Fixed bugs on the frontend and backend</li>
-            <li>Implemented Google and Facebook sign-in using Firebase, the Google dashboard and the Facebook developers dashboard</li>
-            <li>Delivered the project on schedule in 6 months</li>
-          </ul>
         </article>
 
-        <article class="job card">
-          <div class="job-head">
+        <article class="commit old reveal">
+          <div class="commit-meta"><span class="hash">commit 4f0e8d2</span><span>· Apr 2023 – Nov 2023</span></div>
+          <div class="card">
             <h3>Backend Developer</h3>
-            <span class="when">Apr 2023 – Nov 2023</span>
+            <div class="org">FOO SAL <small>· Sin El-Fil, Metn, Lebanon · Full Time · Remote</small></div>
+            <ul>
+              <li>Collaborated on backend solutions using Laravel for fintech and banking applications</li>
+              <li>Optimized APIs and databases for efficient data management</li>
+              <li>Ensured code quality and reliability through best practices</li>
+              <li>Troubleshot issues to keep systems running smoothly for users</li>
+            </ul>
           </div>
-          <div class="org">FOO SAL <small>· Sin El-Fil, Metn, Lebanon · Full Time · Remote</small></div>
-          <ul>
-            <li>Collaborated on backend solutions using Laravel for fintech and banking applications</li>
-            <li>Optimized APIs and databases for efficient data management</li>
-            <li>Ensured code quality and reliability through best practices</li>
-            <li>Troubleshot issues to keep systems running smoothly for users</li>
-          </ul>
         </article>
 
-        <article class="job card">
-          <div class="job-head">
+        <article class="commit old reveal">
+          <div class="commit-meta"><span class="hash">commit 1b3c7a9</span><span>· May 2021 – Apr 2023</span></div>
+          <div class="card">
             <h3>Full-Stack Developer</h3>
-            <span class="when">May 2021 – Apr 2023</span>
+            <div class="org">BASMA.com <small>· Gemmayzeh, Beirut, Lebanon · Full Time · On-Site</small></div>
+            <ul>
+              <li>Implemented server-side code with the Laravel framework and integrated it with the frontend team's work</li>
+              <li>Integrated payment gateways such as Stripe, Cashew and Tabby</li>
+              <li>Integrated third-party services such as WhatsApp, Slack, SMS gateways and Freshworks apps</li>
+              <li>Planned, wrote and debugged web applications; used Linux to manage AWS EC2 instances</li>
+              <li>Used GitLab and GitHub for version control and applied design patterns during implementation</li>
+            </ul>
           </div>
-          <div class="org">BASMA.com <small>· Gemmayzeh, Beirut, Lebanon · Full Time · On-Site</small></div>
-          <ul>
-            <li>Implemented server-side code with the Laravel framework and integrated it with the frontend team's work</li>
-            <li>Integrated payment gateways such as Stripe, Cashew and Tabby</li>
-            <li>Integrated third-party services such as WhatsApp, Slack, SMS gateways and Freshworks apps</li>
-            <li>Planned, wrote and debugged web applications; used Linux to manage AWS EC2 instances</li>
-            <li>Used GitLab and GitHub for version control and applied design patterns during implementation</li>
-          </ul>
         </article>
 
       </div>
@@ -308,37 +406,47 @@
 
   <section id="projects">
     <div class="wrap">
-      <div class="sec-head"><h2>Key Projects</h2><span class="rule"></span></div>
-      <div class="projects">
-        <article class="card project featured">
-          <h3>TelGlob — Secure eSIM Profile Portal</h3>
-          <div class="where">Freelance · Oct 2026</div>
-          <p>Designed, built and deployed a secure portal for a telecom client. Mobile network operators use it to hand over eSIM profile data in place of email and WhatsApp transfers. I gathered requirements directly with the client, ran user acceptance testing and handed the system over in production, taking it from requirements to production in 3 days with Claude Code as an AI pair programmer.</p>
-          <div class="tags"><span class="tag">Laravel 13</span><span class="tag">React</span><span class="tag">Browser-side encryption</span><span class="tag">Two-factor auth</span><span class="tag">Ubuntu VPS</span><span class="tag">nginx</span><span class="tag">Claude Code</span></div>
+      <div class="sec-cmd" data-cmd="ls -la ~/projects"><span class="ps1">~ $</span><span class="typed">ls -la ~/projects</span><span class="caret"></span></div>
+      <div class="files">
+        <article class="card file wide reveal">
+          <div class="file-head"><span class="fname">telglob-esim-portal/</span><span>freelance · Oct 2026</span></div>
+          <div class="file-body">
+            <h3>TelGlob — Secure eSIM Profile Portal</h3>
+            <p>Designed, built and deployed a secure portal for a telecom client. Mobile network operators use it to hand over eSIM profile data in place of email and WhatsApp transfers. I gathered requirements directly with the client, ran user acceptance testing and handed the system over in production, taking it from requirements to production in 3 days with Claude Code as an AI pair programmer.</p>
+            <div class="tags"><span class="tag">Laravel 13</span><span class="tag">React</span><span class="tag">browser-side encryption</span><span class="tag">2FA</span><span class="tag">Ubuntu VPS</span><span class="tag">nginx</span><span class="tag">Claude Code</span></div>
+          </div>
         </article>
-        <article class="card project">
-          <h3>WhatsApp Communication Tool</h3>
-          <div class="where">Wakilni</div>
-          <p>A WhatsApp Business platform that links customer chats to delivery tasks: message templates, media and voice notes, retries, queued webhooks, bulk conversations, push notifications to the driver app, a chat admin panel and cost reporting. Covered by unit tests.</p>
-          <div class="tags"><span class="tag">WhatsApp Business API</span><span class="tag">Laravel queues</span><span class="tag">FCM</span><span class="tag">ffmpeg</span></div>
+        <article class="card file reveal">
+          <div class="file-head"><span class="fname">whatsapp-comm-tool/</span><span>wakilni</span></div>
+          <div class="file-body">
+            <h3>WhatsApp Communication Tool</h3>
+            <p>A WhatsApp Business platform that links customer chats to delivery tasks: message templates, media and voice notes, retries, queued webhooks, bulk conversations, push notifications to the driver app, a chat admin panel and cost reporting. Covered by unit tests.</p>
+            <div class="tags"><span class="tag">WhatsApp API</span><span class="tag">queues</span><span class="tag">FCM</span><span class="tag">ffmpeg</span></div>
+          </div>
         </article>
-        <article class="card project">
-          <h3>Cashbox Settlement Module</h3>
-          <div class="where">Wakilni</div>
-          <p>Designed and built client cash settlement end to end: scheduling, linking orders and audits, cash, card and check settlement, extra fees, CSV and PDF exports, and bulk imports. Later led the v2 rewrite with a new scheduling engine and a feature-flagged rollout.</p>
-          <div class="tags"><span class="tag">Laravel</span><span class="tag">React</span><span class="tag">MySQL</span><span class="tag">Feature flags</span></div>
+        <article class="card file reveal">
+          <div class="file-head"><span class="fname">cashbox/</span><span>wakilni</span></div>
+          <div class="file-body">
+            <h3>Cashbox Settlement Module</h3>
+            <p>Designed and built client cash settlement end to end: scheduling, linking orders and audits, cash, card and check settlement, extra fees, CSV and PDF exports, and bulk imports. Later led the v2 rewrite with a new scheduling engine and a feature-flagged rollout.</p>
+            <div class="tags"><span class="tag">Laravel</span><span class="tag">React</span><span class="tag">MySQL</span><span class="tag">feature flags</span></div>
+          </div>
         </article>
-        <article class="card project">
-          <h3>E-commerce Integrations</h3>
-          <div class="where">Wakilni</div>
-          <p>Extended the Shopify and WooCommerce integrations with order sync jobs, tag-based activation, auto-fulfillment with retries, and address and phone normalisation across Lebanon and Jordan.</p>
-          <div class="tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">Background jobs</span></div>
+        <article class="card file reveal">
+          <div class="file-head"><span class="fname">ecommerce-integrations/</span><span>wakilni</span></div>
+          <div class="file-body">
+            <h3>E-commerce Integrations</h3>
+            <p>Extended the Shopify and WooCommerce integrations with order sync jobs, tag-based activation, auto-fulfillment with retries, and address and phone normalisation across Lebanon and Jordan.</p>
+            <div class="tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">background jobs</span></div>
+          </div>
         </article>
-        <article class="card project">
-          <h3>Bulk Returns &amp; Laravel Upgrade</h3>
-          <div class="where">Wakilni</div>
-          <p>Built bulk return orders from scratch, from migrations and APIs to the React UI. Upgraded the API to Laravel 8 and fixed the regressions that followed.</p>
-          <div class="tags"><span class="tag">Laravel</span><span class="tag">React</span><span class="tag">Migrations</span></div>
+        <article class="card file reveal">
+          <div class="file-head"><span class="fname">bulk-returns+upgrade/</span><span>wakilni</span></div>
+          <div class="file-body">
+            <h3>Bulk Returns &amp; Laravel Upgrade</h3>
+            <p>Built bulk return orders from scratch, from migrations and APIs to the React UI. Upgraded the API to Laravel 8 and fixed the regressions that followed.</p>
+            <div class="tags"><span class="tag">Laravel</span><span class="tag">React</span><span class="tag">migrations</span></div>
+          </div>
         </article>
       </div>
     </div>
@@ -346,29 +454,42 @@
 
   <section id="skills">
     <div class="wrap">
-      <div class="sec-head"><h2>Skills</h2><span class="rule"></span></div>
-      <div class="skills">
-        <div class="card skill"><h3>Backend</h3><div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">REST APIs</span><span class="tag">Queues &amp; jobs</span><span class="tag">MySQL</span><span class="tag">SQLite</span></div></div>
-        <div class="card skill"><h3>Frontend</h3><div class="tags"><span class="tag">React.js</span><span class="tag">JavaScript</span></div></div>
-        <div class="card skill"><h3>AI-assisted development</h3><div class="tags"><span class="tag">Claude Code</span><span class="tag">Project memory</span><span class="tag">MCP integrations</span><span class="tag">Claude artifacts</span><span class="tag">AI code review</span></div></div>
-        <div class="card skill"><h3>Integrations</h3><div class="tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">WhatsApp Business API</span><span class="tag">Firebase (FCM)</span><span class="tag">Stripe</span><span class="tag">Tabby</span><span class="tag">Postmark</span></div></div>
-        <div class="card skill"><h3>DevOps</h3><div class="tags"><span class="tag">AWS (EC2)</span><span class="tag">Linux</span><span class="tag">Bash</span><span class="tag">nginx</span><span class="tag">Supervisor</span><span class="tag">GitHub</span><span class="tag">GitLab</span><span class="tag">Datadog</span><span class="tag">Load testing</span></div></div>
-      </div>
+      <div class="sec-cmd" data-cmd="cat skills.json"><span class="ps1">~ $</span><span class="typed">cat skills.json</span><span class="caret"></span></div>
+      <div class="card json reveal"><span class="p">{</span>
+  <span class="k">"backend"</span><span class="p">:</span> <span class="p">[</span><span class="s">"PHP"</span><span class="p">,</span> <span class="s">"Laravel"</span><span class="p">,</span> <span class="s">"REST APIs"</span><span class="p">,</span> <span class="s">"Queues &amp; jobs"</span><span class="p">,</span> <span class="s">"MySQL"</span><span class="p">,</span> <span class="s">"SQLite"</span><span class="p">],</span>
+  <span class="k">"frontend"</span><span class="p">:</span> <span class="p">[</span><span class="s">"React.js"</span><span class="p">,</span> <span class="s">"JavaScript"</span><span class="p">],</span>
+  <span class="k">"ai_assisted_dev"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Claude Code"</span><span class="p">,</span> <span class="s">"Project memory"</span><span class="p">,</span> <span class="s">"MCP integrations"</span><span class="p">,</span> <span class="s">"Claude artifacts"</span><span class="p">,</span> <span class="s">"AI code review"</span><span class="p">],</span>
+  <span class="k">"integrations"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Shopify"</span><span class="p">,</span> <span class="s">"WooCommerce"</span><span class="p">,</span> <span class="s">"WhatsApp Business API"</span><span class="p">,</span> <span class="s">"Firebase (FCM)"</span><span class="p">,</span> <span class="s">"Stripe"</span><span class="p">,</span> <span class="s">"Tabby"</span><span class="p">,</span> <span class="s">"Postmark"</span><span class="p">],</span>
+  <span class="k">"devops"</span><span class="p">:</span> <span class="p">[</span><span class="s">"AWS (EC2)"</span><span class="p">,</span> <span class="s">"Linux"</span><span class="p">,</span> <span class="s">"Bash"</span><span class="p">,</span> <span class="s">"nginx"</span><span class="p">,</span> <span class="s">"Supervisor"</span><span class="p">,</span> <span class="s">"GitHub"</span><span class="p">,</span> <span class="s">"GitLab"</span><span class="p">,</span> <span class="s">"Datadog"</span><span class="p">,</span> <span class="s">"Load testing"</span><span class="p">]</span>
+<span class="p">}</span></div>
     </div>
   </section>
 
   <section id="education">
     <div class="wrap">
-      <div class="sec-head"><h2>Education &amp; Training</h2><span class="rule"></span></div>
-      <div class="edu">
-        <div class="card">
-          <div class="mini"><span class="when">2015 – 2019</span><b>Bachelor's Degree, Electronics</b><div>Lebanese University · Faculty of Sciences</div><div>Math, physics and programming, including Assembly, C and C++.</div></div>
-          <div class="mini"><span class="when">2020 – 2021</span><b>Full-Stack Web Development Bootcamp</b><div>SE Factory · 14-week intensive program</div></div>
+      <div class="sec-cmd" data-cmd="cat education.yml"><span class="ps1">~ $</span><span class="typed">cat education.yml</span><span class="caret"></span></div>
+      <div class="yml">
+        <div class="card reveal">
+          <div class="key">education:</div>
+          <div class="item"><span class="dash">  - </span><span class="key">degree:</span> <span class="val">Bachelor's, Electronics</span><br>
+            <span class="key">    school:</span> <span class="val">Lebanese University, Faculty of Sciences</span><br>
+            <span class="key">    years:</span> <span class="yr">2015 – 2019</span><br>
+            <span class="key">    focus:</span> <span class="val">math, physics, Assembly, C, C++</span></div>
+          <div class="item"><span class="dash">  - </span><span class="key">bootcamp:</span> <span class="val">Full-Stack Web Development</span><br>
+            <span class="key">    school:</span> <span class="val">SE Factory (14 weeks)</span><br>
+            <span class="key">    years:</span> <span class="yr">2020 – 2021</span></div>
         </div>
-        <div class="card">
-          <div class="mini"><span class="when">2021</span><b>Software Developer (Internship)</b><div>Integrated Digital Systems (IDS) · ASP.NET Core MVC</div></div>
-          <div class="mini"><span class="when">2021</span><b>AWS Practitioner Training</b><div>White Stork · AWS Cloud Practitioner preparation</div></div>
-          <div class="mini"><span class="when">2018 – 2019</span><b>Financial Sales Consultant</b><div>Allianz SNA · Financial advice and insurance</div></div>
+        <div class="card reveal">
+          <div class="key">training:</div>
+          <div class="item"><span class="dash">  - </span><span class="key">role:</span> <span class="val">Software Developer (internship)</span><br>
+            <span class="key">    at:</span> <span class="val">Integrated Digital Systems (IDS), ASP.NET Core MVC</span><br>
+            <span class="key">    year:</span> <span class="yr">2021</span></div>
+          <div class="item"><span class="dash">  - </span><span class="key">course:</span> <span class="val">AWS Cloud Practitioner prep</span><br>
+            <span class="key">    at:</span> <span class="val">White Stork</span><br>
+            <span class="key">    year:</span> <span class="yr">2021</span></div>
+          <div class="item"><span class="dash">  - </span><span class="key">role:</span> <span class="val">Financial Sales Consultant</span><br>
+            <span class="key">    at:</span> <span class="val">Allianz SNA</span><br>
+            <span class="key">    years:</span> <span class="yr">2018 – 2019</span></div>
         </div>
       </div>
     </div>
@@ -376,33 +497,185 @@
 
   <section id="contact">
     <div class="wrap">
-      <div class="card contact">
-        <h2>Let's work together</h2>
-        <p>The quickest way to reach me is email or LinkedIn.</p>
-        <div class="cta">
-          <a class="btn primary" href="mailto:mahdi.m.moussa@gmail.com">Email me</a>
-          <a class="btn" href="https://linkedin.com/in/mahdi-moussa" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="assets/Mahdi_Moussa_Resume.pdf" download>Download CV</a>
+      <div class="sec-cmd" data-cmd="./contact.sh --interactive"><span class="ps1">~ $</span><span class="typed">./contact.sh --interactive</span><span class="caret"></span></div>
+      <div class="term shell reveal">
+        <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">try it — type a command</span></div>
+        <div class="term-body" id="shell">
+          <div class="shell-line hint">Welcome! Type <span class="s">help</span> to see what you can run.</div>
+          <div class="shell-input-row"><span class="ps1">visitor@mahdi:~$</span><input class="shell-input" id="shellIn" aria-label="Terminal input" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
         </div>
+      </div>
+      <div class="chips" id="chips">
+        <button class="chip" data-run="help">help</button>
+        <button class="chip" data-run="whoami">whoami</button>
+        <button class="chip" data-run="projects">projects</button>
+        <button class="chip" data-run="skills">skills</button>
+        <button class="chip" data-run="contact">contact</button>
+        <button class="chip" data-run="resume">resume</button>
       </div>
     </div>
   </section>
 </main>
 
-<footer>© <span id="y">2026</span> Mahdi Moussa · Beirut, Lebanon</footer>
+<footer><b>$</b> exit 0 · © <span id="y">2026</span> Mahdi Moussa · built by hand, deployed on GitHub Pages</footer>
 
 <script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
   document.getElementById('y').textContent = new Date().getFullYear();
-  const links = [...document.querySelectorAll('.links a')];
-  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  /* ---------- cursor spotlight ---------- */
+  if (!reduce) {
+    addEventListener('pointermove', e => {
+      document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+      document.documentElement.style.setProperty('--my', e.clientY + 'px');
+    }, { passive: true });
+    document.querySelectorAll('.file').forEach(f => f.addEventListener('pointermove', e => {
+      const r = f.getBoundingClientRect();
+      f.style.setProperty('--fx', (e.clientX - r.left) + 'px');
+      f.style.setProperty('--fy', (e.clientY - r.top) + 'px');
+    }));
+  }
+
+  /* ---------- hero boot sequence ---------- */
+  const boot = document.getElementById('boot');
+  const cmds = [...boot.querySelectorAll('[data-type]')];
+  const steps = [...boot.querySelectorAll('[data-step]')];
+  const photo = document.getElementById('photoWin');
+  let skipped = false;
+
+  function showAll() {
+    skipped = true;
+    cmds.forEach(c => c.textContent = c.dataset.type);
+    boot.querySelectorAll('.boot-line, [data-step]').forEach(el => el.style.visibility = 'visible');
+    photo.classList.add('loaded');
+    document.getElementById('skip').style.display = 'none';
+  }
+
+  async function runBoot() {
+    if (reduce) return showAll();
+    boot.querySelectorAll('.boot-line, [data-step]').forEach(el => el.style.visibility = 'hidden');
+    cmds.forEach(c => c.textContent = '');
+    setTimeout(() => photo.classList.add('loaded'), 350);
+    const lines = [...boot.querySelectorAll('.boot-line')];
+    for (let i = 0; i < cmds.length; i++) {
+      if (skipped) return;
+      const line = cmds[i].closest('.boot-line');
+      line.style.visibility = 'visible';
+      const caret = document.createElement('span'); caret.className = 'caret';
+      line.appendChild(caret);
+      const text = cmds[i].dataset.type;
+      for (const ch of text) {
+        if (skipped) { caret.remove(); return; }
+        cmds[i].textContent += ch;
+        await sleep(38 + Math.random() * 40);
+      }
+      await sleep(180);
+      caret.remove();
+      if (skipped) return;
+      const out = line.nextElementSibling;
+      if (out) out.style.visibility = 'visible';
+      await sleep(260);
+    }
+    if (!skipped) { lines[lines.length - 1].style.visibility = 'visible'; document.getElementById('skip').style.display = 'none'; }
+  }
+  document.getElementById('skip').addEventListener('click', showAll);
+  runBoot();
+
+  /* ---------- section commands type on scroll + reveal ---------- */
+  async function typeCmd(el) {
+    const span = el.querySelector('.typed');
+    const text = el.dataset.cmd;
+    if (reduce) { span.textContent = text; return; }
+    span.textContent = '';
+    el.classList.add('typing');
+    for (const ch of text) { span.textContent += ch; await sleep(22 + Math.random() * 28); }
+    await sleep(250);
+    el.classList.remove('typing');
+  }
+  const cmdEls = [...document.querySelectorAll('.sec-cmd')];
+  if (!reduce) cmdEls.forEach(el => el.querySelector('.typed').textContent = '');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-      }
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      if (e.target.classList.contains('sec-cmd')) typeCmd(e.target);
+      else e.target.classList.add('in');
     });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  sections.forEach(s => s && io.observe(s));
+  }, { rootMargin: '0px 0px -12% 0px' });
+  cmdEls.forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i % 4, 3) * 70) + 'ms';
+    io.observe(el);
+  });
+
+  /* ---------- active nav ---------- */
+  const links = [...document.querySelectorAll('.links a')];
+  const navIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) navIO.observe(s); });
+
+  /* ---------- interactive shell ---------- */
+  const shell = document.getElementById('shell');
+  const input = document.getElementById('shellIn');
+  const row = input.parentElement;
+  const history = []; let hIdx = 0;
+  const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  const g = s => `<span class="s">${s}</span>`;
+  const commands = {
+    help: () => `Available commands:\n  ${g('whoami')}     who is Mahdi\n  ${g('projects')}   highlighted work\n  ${g('skills')}     tech stack\n  ${g('contact')}    how to reach me\n  ${g('resume')}     download the PDF\n  ${g('linkedin')}   open LinkedIn\n  ${g('clear')}      clear the screen`,
+    whoami: () => `Mahdi Moussa — Senior Full-Stack Software Engineer\nFLM Project Lead @ Wakilni · Beirut, Lebanon\n5+ years with Laravel and React across logistics, e-commerce and fintech.`,
+    projects: () => `${g('telglob-esim-portal/')}   secure eSIM profile portal (freelance)\n${g('whatsapp-comm-tool/')}   WhatsApp Business ↔ delivery tasks\n${g('cashbox/')}              client cash settlement, v1 + v2\n${g('ecommerce-integrations/')} Shopify & WooCommerce\n→ scroll up to ${'<a href="#projects">#projects</a>'} for details`,
+    skills: () => `backend   PHP, Laravel, REST APIs, queues, MySQL\nfrontend  React.js, JavaScript\nai        Claude Code, project memory, MCP, artifacts\ndevops    AWS EC2, Linux, nginx, Supervisor, Datadog`,
+    contact: () => `email     <a href="mailto:mahdi.m.moussa@gmail.com">mahdi.m.moussa@gmail.com</a>\nphone     <a href="tel:+96176787354">+961 76 78 73 54</a>\nlinkedin  <a href="https://linkedin.com/in/mahdi-moussa" target="_blank" rel="noopener">linkedin.com/in/mahdi-moussa</a>`,
+    resume: () => { const a = document.createElement('a'); a.href = 'assets/Mahdi_Moussa_Resume.pdf'; a.download = ''; document.body.appendChild(a); a.click(); a.remove(); return `Downloading ${g('Mahdi_Moussa_Resume.pdf')} …`; },
+    linkedin: () => { window.open('https://linkedin.com/in/mahdi-moussa', '_blank', 'noopener'); return 'Opening LinkedIn in a new tab …'; },
+    ls: () => `about.md  experience/  projects/  skills.json  education.yml  resume.pdf`,
+    pwd: () => `/home/mahdi`,
+    date: () => new Date().toString(),
+    echo: args => esc(args.join(' ')),
+    sudo: () => `Permission denied: nice try 🙂`,
+    exit: () => `There is no escape. Try ${g('help')}.`,
+  };
+  function print(html, cls = '') {
+    const d = document.createElement('div');
+    d.className = 'shell-line ' + cls; d.innerHTML = html;
+    shell.insertBefore(d, row);
+    shell.scrollTop = shell.scrollHeight;
+  }
+  function run(raw) {
+    const line = raw.trim();
+    print(`<span class="ps1">visitor@mahdi:~$</span> ${esc(line)}`);
+    if (!line) return;
+    history.push(line); hIdx = history.length;
+    const [cmd, ...args] = line.split(/\s+/);
+    const key = cmd.toLowerCase();
+    if (key === 'clear') { shell.querySelectorAll('.shell-line').forEach(n => n.remove()); return; }
+    if (key === 'cat' || key === 'cd') return print(`Try scrolling — or run ${g('help')}.`, 'out');
+    const fn = commands[key];
+    print(fn ? fn(args) : `command not found: ${esc(cmd)} — type ${g('help')}`, 'out');
+  }
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { run(input.value); input.value = ''; }
+    else if (e.key === 'ArrowUp') { if (hIdx > 0) { input.value = history[--hIdx]; e.preventDefault(); } }
+    else if (e.key === 'ArrowDown') { if (hIdx < history.length) { input.value = history[++hIdx] || ''; e.preventDefault(); } }
+    else if (e.key === 'Tab') {
+      e.preventDefault();
+      const m = Object.keys(commands).concat('clear').filter(k => k.startsWith(input.value.toLowerCase()));
+      if (m.length === 1) input.value = m[0];
+    }
+  });
+  shell.addEventListener('click', () => input.focus({ preventScroll: true }));
+  document.getElementById('chips').addEventListener('click', e => {
+    const b = e.target.closest('[data-run]'); if (!b) return;
+    run(b.dataset.run); input.focus({ preventScroll: true });
+  });
+})();
 </script>
 </body>
 </html>
