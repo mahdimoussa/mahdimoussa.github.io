@@ -398,16 +398,42 @@
             </div>
             <span class="when">Nov 2023 – Present</span>
           </div>
-          <p>Senior engineer on Wakilni's delivery and logistics platform: the web platform used by teams and clients, and the driver mobile app.</p>
-          <h4>What I do</h4>
+          <p>Senior engineer and project lead on Wakilni's delivery and logistics platform, used every day by operations teams, clients and drivers across Lebanon and Jordan. I work across the whole system: Laravel API, React web portal, driver mobile app, databases, servers and deployments.</p>
+          <h4>Leadership and responsibilities</h4>
           <ul class="ticks">
-            <li>Lead the FLM project: set the technical direction, break work into tasks, plan sprints and report delivery to stakeholders</li>
+            <li>Lead the FLM project: set the technical direction, split work into tickets, estimate and plan sprints, and answer for delivery to stakeholders</li>
             <li>Design features before building them: data structure, how systems talk to each other, background processing and safe rollouts</li>
             <li>Review code for the team and mentor developers on Laravel and React best practices</li>
             <li>Manage production releases across development, testing and live environments</li>
-            <li>Support operations, finance and customer teams when issues come up, and investigate them with monitoring tools</li>
+            <li>Support operations, finance and customer teams, resolve customer issues, and investigate production problems with monitoring tools</li>
             <li>Run weekly demos and training sessions so teams understand new features</li>
             <li>Work in an Agile team with sprint planning, daily stand-ups and retrospectives</li>
+          </ul>
+          <h4>The full delivery flow</h4>
+          <ul class="ticks two">
+            <li><strong>Orders:</strong> the full order cycle, from creation and pickup through fulfillment, delivery and completion</li>
+            <li><strong>Customers:</strong> creating and managing customer accounts, locations and settings</li>
+            <li><strong>Fulfillment and delivery:</strong> delivery tasks, driver assignment, rescheduling, status tracking and waybills</li>
+            <li><strong>Returns:</strong> single and bulk return orders, package handling and activity tracking</li>
+            <li><strong>Finance:</strong> cash collection, client settlement, extra fees and financial exports</li>
+            <li><strong>Routes and coverage:</strong> route, zone and area mapping across Lebanon and Jordan</li>
+          </ul>
+          <h4>Key systems I built</h4>
+          <ul class="ticks">
+            <li><strong>WhatsApp communication platform:</strong> links customer chats to delivery tasks, with message templates, voice notes and media, automatic retries with fallback numbers, bulk conversation start, driver app notifications, and an admin panel with history and cost reports</li>
+            <li><strong>Cashbox settlement:</strong> handles how clients get paid the cash collected on their deliveries, with flexible schedules, cash, card and check settlement, extra fees, exports and imports. I built it end to end, then led its second version with versioned settings, a new scheduling engine and a safe, feature-flagged rollout</li>
+            <li><strong>Online store integrations:</strong> connects Shopify and WooCommerce stores so orders sync and ship automatically, with clean areas, addresses and phone numbers across Lebanon and Jordan</li>
+            <li><strong>Bulk returns:</strong> built from scratch, from the database and APIs to the screens teams use, with activity logs and faster editing</li>
+            <li><strong>Platform upgrade:</strong> upgraded the platform to the latest Laravel 13 and PHP 8.5, one major version at a time, with automated before-and-after checks on login, search, caching, background jobs, API responses and exports, plus rollback plans</li>
+          </ul>
+          <h4>Technical work</h4>
+          <ul class="ticks">
+            <li><strong>APIs and architecture:</strong> versioned REST APIs with repositories, transformers, request validation, JWT authentication and role-based access</li>
+            <li><strong>Database management:</strong> schema design, migrations, moving data between system versions, query and index tuning, and managing production MySQL databases</li>
+            <li><strong>Background and real-time processing:</strong> Redis queues with Supervisor workers, webhooks, scheduled jobs and retries, with live updates through Pusher and Firebase push notifications</li>
+            <li><strong>Performance and capacity:</strong> load testing, finding bottlenecks and planning capacity for servers, workers, databases and real-time connections</li>
+            <li><strong>Releases and monitoring:</strong> AWS deployments, feature flags and rollback procedures, with Datadog logs and AWS metrics</li>
+            <li><strong>Quality and security:</strong> unit and feature tests, code reviews, security fixes, data masking and private media storage</li>
           </ul>
           <h4>How I use AI</h4>
           <ul class="ticks">
@@ -525,38 +551,6 @@
           <div class="chips"><span class="chip">Shopify</span><span class="chip">Liquid</span><span class="chip">Arabic RTL</span><span class="chip">Theme development</span><span class="chip">Claude Code</span></div>
           <p style="margin:16px 0 0"><a href="https://cedarhaul.com" target="_blank" rel="noopener">cedarhaul.com ↗</a></p>
         </article>
-
-        <article class="project reveal" data-tilt>
-          <div class="p-icon" style="background: linear-gradient(135deg,#16a34a,#25d366)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg></div>
-          <span class="p-label">Wakilni · Communication</span>
-          <h3>WhatsApp Communication Tool</h3>
-          <p>Lets customers and drivers chat on WhatsApp about each delivery, with message templates, voice notes, automatic retries, notifications to the driver app and an admin panel with history and cost reports.</p>
-          <div class="chips"><span class="chip">WhatsApp Business</span><span class="chip">Laravel</span><span class="chip">Push notifications</span></div>
-        </article>
-
-        <article class="project reveal" data-tilt>
-          <div class="p-icon" style="background: linear-gradient(135deg,#f59e0b,#ef4444)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="2.5"/><path d="M6 10v.01M18 15v.01"/></svg></div>
-          <span class="p-label">Wakilni · Finance</span>
-          <h3>Cashbox Settlement</h3>
-          <p>Handles how clients get paid the cash collected on their deliveries: scheduling, cash, card and check settlement, extra fees, exports and imports. I built it end to end, then led its second version.</p>
-          <div class="chips"><span class="chip">Laravel</span><span class="chip">React</span><span class="chip">MySQL</span></div>
-        </article>
-
-        <article class="project reveal" data-tilt>
-          <div class="p-icon" style="background: linear-gradient(135deg,#65a30d,#95bf47)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></div>
-          <span class="p-label">Wakilni · E-commerce</span>
-          <h3>Online Store Integrations</h3>
-          <p>Connects Shopify and WooCommerce stores to Wakilni so their orders sync and ship automatically, with clean addresses and phone numbers across Lebanon and Jordan.</p>
-          <div class="chips"><span class="chip">Shopify</span><span class="chip">WooCommerce</span><span class="chip">Automation</span></div>
-        </article>
-
-        <article class="project reveal" data-tilt>
-          <div class="p-icon" style="background: linear-gradient(135deg,#0ea5e9,#6366f1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div>
-          <span class="p-label">Wakilni · Operations</span>
-          <h3>Bulk Returns &amp; Platform Upgrade</h3>
-          <p>Built bulk return orders from scratch, from the database to the screens teams use. Also upgraded the platform to a newer Laravel version and fixed what the upgrade broke.</p>
-          <div class="chips"><span class="chip">Laravel</span><span class="chip">React</span></div>
-        </article>
       </div>
     </div>
   </section>
@@ -567,7 +561,7 @@
       <h2 class="reveal">What I <span class="grad-text">work with</span></h2>
       <p class="sec-lead reveal">The tools and technologies I use to design, build and run products.</p>
       <div class="skills">
-        <div class="skill reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></span><h3>Backend</h3><div class="chips"><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">REST APIs</span><span class="chip">Queues &amp; jobs</span><span class="chip">MySQL</span><span class="chip">SQLite</span></div></div>
+        <div class="skill reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></span><h3>Backend</h3><div class="chips"><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">REST APIs</span><span class="chip">Queues &amp; jobs</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">Elasticsearch</span><span class="chip">SQLite</span></div></div>
         <div class="skill reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Frontend</h3><div class="chips"><span class="chip">React.js</span><span class="chip">JavaScript</span></div></div>
         <div class="skill reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span><h3>Cloud &amp; DevOps</h3><div class="chips"><span class="chip">AWS (EC2)</span><span class="chip">Linux</span><span class="chip">Bash</span><span class="chip">nginx</span><span class="chip">Supervisor</span><span class="chip">GitHub</span><span class="chip">GitLab</span><span class="chip">Datadog</span><span class="chip">Load testing</span></div></div>
         <div class="skill ai reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8L20 10l-5 3.8L16.5 20 12 16.6 7.5 20 9 13.8 4 10l6.1-1.2z"/></svg></span><h3>AI-assisted development</h3><div class="chips"><span class="chip">Claude Code</span><span class="chip">Project memory</span><span class="chip">MCP integrations</span><span class="chip">Claude artifacts</span><span class="chip">AI-assisted planning &amp; code review</span></div></div>
